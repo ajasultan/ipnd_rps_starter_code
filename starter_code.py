@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+import random
 """This program plays a game of Rock, Paper, Scissors between two Players,
 and reports both Player's scores each round."""
 
@@ -21,6 +21,12 @@ def beats(one, two):
     return ((one == 'rock' and two == 'scissors') or
             (one == 'scissors' and two == 'paper') or
             (one == 'paper' and two == 'rock'))
+
+
+class RandomPlayer(Player):
+    def move(self):
+        choice = random.choice(moves)
+        return choice
 
 
 class Game:
