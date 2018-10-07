@@ -29,6 +29,17 @@ class RandomPlayer(Player):
         return choice
 
 
+class CyclePlayer(Player):
+    def move(self):
+        self.index = 0
+        if self.index > 2
+            self.index = 0
+        move = moves[self.index]
+        self.index += 1
+        return move
+
+
+
 class Game:
     def __init__(self, p1, p2):
         self.p1 = p1
