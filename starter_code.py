@@ -14,7 +14,8 @@ class Player:
         return 'rock'
 
     def learn(self, my_move, their_move):
-        pass
+        self.my_move = my_move
+        self.their_move = their_move
 
 
 def beats(one, two):
