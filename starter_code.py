@@ -11,7 +11,8 @@ in this game"""
 
 class Player:
     def move(self):
-        return 'rock'
+        #return 'rock'
+        pass
 
     def learn(self, my_move, their_move):
         self.my_move = my_move
@@ -21,8 +22,18 @@ class Player:
 
 def beats(one, two):
     return ((one == 'rock' and two == 'scissors') or
-            (one == 'scissors' and two == 'paper') or
-            (one == 'paper' and two == 'rock'))
+                (one == 'scissors' and two == 'paper') or
+                (one == 'paper' and two == 'rock'))
+
+
+def check_winner(move1,move2):
+    if beats(move1, move2):
+        print('Player 1 Won!')
+    else:
+        if move1 == move2:
+            print('Draw Match!')
+        else:
+            print('Player 2 Won!')
 
 
 class RandomPlayer(Player):
@@ -63,6 +74,7 @@ class Game:
         move1 = self.p1.move()
         move2 = self.p2.move()
         print(f"Player 1: {move1}  Player 2: {move2}")
+        check_winner(move1,move2)
         self.p1.learn(move1, move2)
         self.p2.learn(move2, move1)
 
@@ -87,6 +99,8 @@ if __name__ == '__main__':
         Note: Please Type the number and then click Enter\n''')
     if game_type == "1":
         game = Game(RandomPlayer(), RandomPlayer())
+        game.play_game()
+    elif game_type == "2":
         game = Game(CyclePlayer(), CyclePlayer())
         game.play_game()
     elif game_type == "3":
