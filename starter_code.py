@@ -34,10 +34,17 @@ class CyclePlayer(Player):
         self.index = 0
         if self.index > 2:
             self.index = 0
-        move = moves[self.index]
+        choice = moves[self.index]
         self.index += 1
-        return move
+        return choice
 
+
+class HumanPlayer(Player):
+    def move(self):
+        choice = ""
+        while not (choice == 'scissors' or choice == 'paper' or choice =='rock'):
+            choice = input("Select 'scissors', 'paper' or 'rock' ")
+        return choice
 
 
 class Game:
