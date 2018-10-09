@@ -32,7 +32,7 @@ class RandomPlayer(Player):
 class CyclePlayer(Player):
     def move(self):
         self.index = 0
-        if self.index > 2
+        if self.index > 2:
             self.index = 0
         move = moves[self.index]
         self.index += 1
@@ -61,5 +61,37 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(Player(), Player())
-    game.play_game()
+    game_type = ""
+    player_type = ""
+    while not (game_type == "1" or game_type == "2" or
+                game_type == "3" or game_type == "4"):
+        game_type = input('''Choose what type of game you would like to play:\n
+        1) RandomPlayer\n
+        2) CyclePlayer\n
+        3) ReflectPlayer\n
+        4) HumanPlayer\n
+        Note: Please Type the number and then click Enter\n''')
+    if game_type == "1":
+        game = Game(RandomPlayer(), RandomPlayer())
+        game = Game(CyclePlayer(), CyclePlayer())
+        game.play_game()
+    elif game_type == "3":
+        game = Game(ReflectPlayer(), ReflectPlayer())
+        game.play_game()
+    elif game_type == "4":
+        while not (player_type == "1" or player_type == "2" or
+                    player_type== "3" or player_type == "4"):
+            player_type = input('''Choose who you would like to play with:\n
+            1) RandomPlayer\n
+            2) CyclePlayer\n
+            3) ReflectPlayer\n
+            Note: Please Type the number\n''')
+        if  player_type == "1":
+            game = Game(HumanPlayer(), RandomPlayer())
+            game.play_game()
+        elif  player_type == "2":
+            game = Game(HumanPlayer(), CyclePlayer())
+            game.play_game()
+        elif  player_type == "3":
+            game = Game(HumanPlayer(), ReflectPlayer())
+            game.play_game()
