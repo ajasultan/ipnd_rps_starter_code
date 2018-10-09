@@ -16,6 +16,7 @@ class Player:
     def learn(self, my_move, their_move):
         self.my_move = my_move
         self.their_move = their_move
+        return their_move
 
 
 def beats(one, two):
@@ -46,6 +47,11 @@ class HumanPlayer(Player):
         while not (choice == 'scissors' or choice == 'paper' or choice =='rock'):
             choice = input("Select 'scissors', 'paper' or 'rock' ")
         return choice
+
+
+class ReflectPlayer(Player):
+    def move(self):
+        pass
 
 
 class Game:
