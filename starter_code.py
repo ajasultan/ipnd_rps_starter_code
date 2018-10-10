@@ -12,10 +12,11 @@ in this game"""
 class Player:
     def __init__(self):
         self.index = 0
+        self.my_move = ""
+        self.their_move = ""
 
     def move(self):
-        #return 'rock'
-        pass
+        return 'rock'
 
     def learn(self, my_move, their_move):
         self.my_move = my_move
@@ -32,11 +33,14 @@ def beats(one, two):
 def check_winner(move1,move2):
     if beats(move1, move2):
         print('Player 1 Won!')
+        return 'Player 1'
     else:
         if move1 == move2:
             print('Draw Match!')
+            return 'None'
         else:
             print('Player 2 Won!')
+            return 'Player 2'
 
 
 class RandomPlayer(Player):
@@ -58,7 +62,7 @@ class HumanPlayer(Player):
     def move(self):
         choice = ""
         while not (choice == 'scissors' or choice == 'paper' or choice =='rock'):
-            choice = input("Select 'scissors', 'paper' or 'rock' ")
+            choice = input("Select 'scissors', 'paper' or 'rock'\n ")
         return choice
 
 
@@ -71,12 +75,18 @@ class Game:
     def __init__(self, p1, p2):
         self.p1 = p1
         self.p2 = p2
+        self.score_p1 = 0
+        self.score_p2 = 0
 
     def play_round(self):
         move1 = self.p1.move()
         move2 = self.p2.move()
         print(f"Player 1: {move1}  Player 2: {move2}")
-        check_winner(move1,move2)
+        winner = check_winner(move1, move2)
+        if winner == "Player 1":
+            self.score_p1 += 1
+        elif winner == "Player 2":
+            self.score_p2 += 1
         self.p1.learn(move1, move2)
         self.p2.learn(move2, move1)
 
@@ -85,7 +95,8 @@ class Game:
         for round in range(3):
             print(f"Round {round}:")
             self.play_round()
-        print("Game over!")
+        print(f'''Game over!
+        The Score is: Player 1 ({self.score_p1}): Player 2 ({self.score_p2})''')
 
 
 if __name__ == '__main__':
