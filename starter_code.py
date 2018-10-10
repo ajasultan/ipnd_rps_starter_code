@@ -10,6 +10,9 @@ in this game"""
 
 
 class Player:
+    def __init__(self):
+        self.index = 0
+
     def move(self):
         #return 'rock'
         pass
@@ -44,11 +47,10 @@ class RandomPlayer(Player):
 
 class CyclePlayer(Player):
     def move(self):
-        self.index = 0
-        if self.index > 2:
-            self.index = 0
         choice = moves[self.index]
         self.index += 1
+        if self.index > 2:
+            self.index = 0
         return choice
 
 
