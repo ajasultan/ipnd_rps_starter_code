@@ -25,11 +25,11 @@ class Player:
 
 def beats(one, two):
     return ((one == 'rock' and two == 'scissors') or
-                (one == 'scissors' and two == 'paper') or
-                (one == 'paper' and two == 'rock'))
+            (one == 'scissors' and two == 'paper') or
+            (one == 'paper' and two == 'rock'))
 
 
-def check_winner(move1,move2):
+def check_winner(move1, move2):
     if beats(move1, move2):
         print('Player 1 Won!')
         return 'Player 1'
@@ -60,7 +60,8 @@ class CyclePlayer(Player):
 class HumanPlayer(Player):
     def move(self):
         choice = ""
-        while not (choice == 'scissors' or choice == 'paper' or choice =='rock'):
+        while not (choice == 'scissors' or choice == 'paper' or
+                   choice == 'rock'):
             choice = input("Select 'scissors', 'paper' or 'rock'\n ")
         return choice
 
@@ -112,7 +113,7 @@ if __name__ == '__main__':
 rock, and rock crushes scissors. Play either "rock", "paper", or "scissors".
 The game cosists of 5 rounds!\n''')
     while not (game_type == "1" or game_type == "2" or
-                game_type == "3" or game_type == "4"):
+               game_type == "3" or game_type == "4"):
         game_type = input('''Choose what type of game you would like to play:\n
     1) RandomPlayer: Two Random Computer Players
     2) CyclePlayer: Two Cycle Computer Players
@@ -130,18 +131,18 @@ The game cosists of 5 rounds!\n''')
         game.play_game()
     elif game_type == "4":
         while not (player_type == "1" or player_type == "2" or
-                    player_type== "3" or player_type == "4"):
+                   player_type == "3" or player_type == "4"):
             player_type = input('''\nChoose who you would like to play with:
             1) RandomPlayer
             2) CyclePlayer
             3) ReflectPlayer
             Note: Please Type the number\n''')
-        if  player_type == "1":
+        if player_type == "1":
             game = Game(HumanPlayer(), RandomPlayer())
             game.play_game()
-        elif  player_type == "2":
+        elif player_type == "2":
             game = Game(HumanPlayer(), CyclePlayer())
             game.play_game()
-        elif  player_type == "3":
+        elif player_type == "3":
             game = Game(HumanPlayer(), ReflectPlayer())
             game.play_game()
