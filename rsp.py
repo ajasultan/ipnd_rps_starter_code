@@ -19,8 +19,7 @@ class Player:
         return 'rock'
 
     def learn(self, my_move, their_move):
-        self.my_move = my_move
-        self.their_move = their_move
+        pass
 
 
 def beats(one, two):
@@ -47,6 +46,9 @@ class RandomPlayer(Player):
         choice = random.choice(moves)
         return choice
 
+    def learn(self, my_move, their_move):
+        pass
+
 
 class CyclePlayer(Player):
     def move(self):
@@ -55,6 +57,9 @@ class CyclePlayer(Player):
         if self.index > 2:
             self.index = 0
         return choice
+
+    def learn(self, my_move, their_move):
+        pass
 
 
 class HumanPlayer(Player):
@@ -71,6 +76,10 @@ class ReflectPlayer(Player):
         choice = self.their_move
         return choice
 
+    def learn(self, my_move, their_move):
+        self.my_move = my_move
+        self.their_move = their_move
+
 
 class Game:
     def __init__(self, p1, p2):
@@ -84,14 +93,13 @@ class Game:
         move2 = self.p2.move()
         print(f"Player 1: {move1}  Player 2: {move2}")
         winner = check_winner(move1, move2)
-        print(f"Score: Player 1 ({self.score_p1}): Player 2 ({self.score_p2})")
-
         if winner == "Player 1":
             self.score_p1 += 1
         elif winner == "Player 2":
             self.score_p2 += 1
         self.p1.learn(move1, move2)
         self.p2.learn(move2, move1)
+        print(f"Score: Player 1 ({self.score_p1}): Player 2 ({self.score_p2})")
 
     def play_game(self):
         print("Game start!")
