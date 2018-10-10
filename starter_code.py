@@ -102,13 +102,16 @@ class Game:
 if __name__ == '__main__':
     game_type = ""
     player_type = ""
+    print('''Here are the rules of the game: scissor cuts paper,paper covers
+    rock, and rock crushes scissors. Play either "rock", "paper", or "scissors".
+    The game cosists of 3 rounds!''')
     while not (game_type == "1" or game_type == "2" or
                 game_type == "3" or game_type == "4"):
         game_type = input('''Choose what type of game you would like to play:\n
-        1) RandomPlayer\n
-        2) CyclePlayer\n
-        3) ReflectPlayer\n
-        4) HumanPlayer\n
+        1) RandomPlayer\n : Two Random Computer Players
+        2) CyclePlayer\n : Two Cycle Computer Players
+        3) ReflectPlayer\n : Two Reflect Computer Players
+        4) HumanPlayer\n : A Human Player with another Computer Player
         Note: Please Type the number and then click Enter\n''')
     if game_type == "1":
         game = Game(RandomPlayer(), RandomPlayer())
