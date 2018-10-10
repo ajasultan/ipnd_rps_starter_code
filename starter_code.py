@@ -11,9 +11,9 @@ in this game"""
 
 class Player:
     def __init__(self):
-        self.index = 0
         self.my_move = random.choice(moves)
         self.their_move = random.choice(moves)
+        self.index = moves.index(self.my_move)
 
     def move(self):
         return 'rock'
@@ -103,15 +103,15 @@ if __name__ == '__main__':
     game_type = ""
     player_type = ""
     print('''Here are the rules of the game: scissor cuts paper,paper covers
-    rock, and rock crushes scissors. Play either "rock", "paper", or "scissors".
-    The game cosists of 3 rounds!''')
+rock, and rock crushes scissors. Play either "rock", "paper", or "scissors".
+The game cosists of 3 rounds!\n''')
     while not (game_type == "1" or game_type == "2" or
                 game_type == "3" or game_type == "4"):
         game_type = input('''Choose what type of game you would like to play:\n
-    1) RandomPlayer\n : Two Random Computer Players
-    2) CyclePlayer\n : Two Cycle Computer Players
-    3) ReflectPlayer\n : Two Reflect Computer Players
-    4) HumanPlayer\n : A Human Player with another Computer Player
+    1) RandomPlayer: Two Random Computer Players
+    2) CyclePlayer: Two Cycle Computer Players
+    3) ReflectPlayer: Two Reflect Computer Players
+    4) HumanPlayer: A Human Player with another Computer Player
     Note: Please Type the number and then click Enter\n''')
     if game_type == "1":
         game = Game(RandomPlayer(), RandomPlayer())
@@ -125,10 +125,10 @@ if __name__ == '__main__':
     elif game_type == "4":
         while not (player_type == "1" or player_type == "2" or
                     player_type== "3" or player_type == "4"):
-            player_type = input('''Choose who you would like to play with:\n
-            1) RandomPlayer\n
-            2) CyclePlayer\n
-            3) ReflectPlayer\n
+            player_type = input('''\nChoose who you would like to play with:
+            1) RandomPlayer
+            2) CyclePlayer
+            3) ReflectPlayer
             Note: Please Type the number\n''')
         if  player_type == "1":
             game = Game(HumanPlayer(), RandomPlayer())
