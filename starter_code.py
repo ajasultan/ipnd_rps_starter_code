@@ -12,8 +12,8 @@ in this game"""
 class Player:
     def __init__(self):
         self.index = 0
-        self.my_move = ""
-        self.their_move = ""
+        self.my_move = random.choice(moves)
+        self.their_move = random.choice(moves)
 
     def move(self):
         return 'rock'
@@ -21,7 +21,6 @@ class Player:
     def learn(self, my_move, their_move):
         self.my_move = my_move
         self.their_move = their_move
-        return their_move
 
 
 def beats(one, two):
@@ -68,7 +67,8 @@ class HumanPlayer(Player):
 
 class ReflectPlayer(Player):
     def move(self):
-        pass
+        choice = self.their_move
+        return choice
 
 
 class Game:
@@ -96,7 +96,7 @@ class Game:
             print(f"Round {round}:")
             self.play_round()
         print(f'''Game over!
-        The Score is: Player 1 ({self.score_p1}): Player 2 ({self.score_p2})''')
+    The Score is: Player 1 ({self.score_p1}): Player 2 ({self.score_p2})''')
 
 
 if __name__ == '__main__':
@@ -108,11 +108,11 @@ if __name__ == '__main__':
     while not (game_type == "1" or game_type == "2" or
                 game_type == "3" or game_type == "4"):
         game_type = input('''Choose what type of game you would like to play:\n
-        1) RandomPlayer\n : Two Random Computer Players
-        2) CyclePlayer\n : Two Cycle Computer Players
-        3) ReflectPlayer\n : Two Reflect Computer Players
-        4) HumanPlayer\n : A Human Player with another Computer Player
-        Note: Please Type the number and then click Enter\n''')
+    1) RandomPlayer\n : Two Random Computer Players
+    2) CyclePlayer\n : Two Cycle Computer Players
+    3) ReflectPlayer\n : Two Reflect Computer Players
+    4) HumanPlayer\n : A Human Player with another Computer Player
+    Note: Please Type the number and then click Enter\n''')
     if game_type == "1":
         game = Game(RandomPlayer(), RandomPlayer())
         game.play_game()
