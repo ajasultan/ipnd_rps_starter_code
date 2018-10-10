@@ -92,11 +92,17 @@ class Game:
 
     def play_game(self):
         print("Game start!")
-        for round in range(3):
+        for round in range(5):
             print(f"Round {round}:")
             self.play_round()
-        print(f'''Game over!
-    The Score is: Player 1 ({self.score_p1}): Player 2 ({self.score_p2})''')
+        if self.score_p1 > self.score_p2:
+            winner = "Player One Won!"
+        elif self.score_p1 < self.score_p2:
+            winner = "Player Two Won!"
+        else:
+            winner = "Draw Match!!"
+        print(f'''\n\nGame over!\n{winner}
+The Score is: Player 1 ({self.score_p1}): Player 2 ({self.score_p2})''')
 
 
 if __name__ == '__main__':
@@ -104,7 +110,7 @@ if __name__ == '__main__':
     player_type = ""
     print('''Here are the rules of the game: scissor cuts paper,paper covers
 rock, and rock crushes scissors. Play either "rock", "paper", or "scissors".
-The game cosists of 3 rounds!\n''')
+The game cosists of 5 rounds!\n''')
     while not (game_type == "1" or game_type == "2" or
                 game_type == "3" or game_type == "4"):
         game_type = input('''Choose what type of game you would like to play:\n
