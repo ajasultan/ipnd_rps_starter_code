@@ -84,6 +84,8 @@ class Game:
         move2 = self.p2.move()
         print(f"Player 1: {move1}  Player 2: {move2}")
         winner = check_winner(move1, move2)
+        print(f"Score: Player 1 ({self.score_p1}): Player 2 ({self.score_p2})")
+
         if winner == "Player 1":
             self.score_p1 += 1
         elif winner == "Player 2":
