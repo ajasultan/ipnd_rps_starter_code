@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
 import random
+
 """This program plays a game of Rock, Paper, Scissors between two Players,
 and reports both Player's scores each round."""
-
+GREEN = '\033[0;32m'
+CYAN = '\033[0;36m'
+YELLOW = '\033[33m'
+RED = '\033[31m'
+WHITE = '\033[37m'
+MAGENTA = '\033[35m'
+PLAYER1_WIN = MAGENTA + 'Player 1 Won!'
+PLAYER2_WIN = YELLOW + 'Player 2 Won!'
+DRAW_MATCH = RED + 'Draw Match!'
 moves = ['rock', 'paper', 'scissors']
 
 """The Player class is the parent class for all of the Players
@@ -30,14 +39,14 @@ def beats(one, two):
 
 def check_winner(move1, move2):
     if beats(move1, move2):
-        print('Player 1 Won!')
+        print(PLAYER1_WIN)
         return 'Player 1'
     else:
         if move1 == move2:
-            print('Draw Match!')
+            print(DRAW_MATCH)
             return 'None'
         else:
-            print('Player 2 Won!')
+            print(PLAYER2_WIN)
             return 'Player 2'
 
 
@@ -67,7 +76,7 @@ class HumanPlayer(Player):
         choice = ""
         while not (choice == 'scissors' or choice == 'paper' or
                    choice == 'rock'):
-            choice = input("Select 'scissors', 'paper' or 'rock'\n ")
+            choice = input(WHITE + "Select 'scissors', 'paper' or 'rock'\n ")
         return choice
 
 
@@ -91,7 +100,7 @@ class Game:
     def play_round(self):
         move1 = self.p1.move()
         move2 = self.p2.move()
-        print(f"Player 1: {move1}  Player 2: {move2}")
+        print(WHITE + f"Player 1: {move1}  Player 2: {move2}")
         winner = check_winner(move1, move2)
         if winner == "Player 1":
             self.score_p1 += 1
@@ -99,29 +108,31 @@ class Game:
             self.score_p2 += 1
         self.p1.learn(move1, move2)
         self.p2.learn(move2, move1)
-        print(f"Score: Player 1 ({self.score_p1}): Player 2 ({self.score_p2})")
+        print(GREEN + "Score: " + MAGENTA + f"Player 1 ({self.score_p1}) : "
+        + YELLOW + f"Player 2 ({self.score_p2})")
 
     def play_game(self):
         print("Game start!")
         for round in range(5):
-            print(f"Round {round}:")
+            print(WHITE + f"Round {round}:")
             self.play_round()
         if self.score_p1 > self.score_p2:
-            winner = "Player One Won!"
+            winner = PLAYER1_WIN
         elif self.score_p1 < self.score_p2:
-            winner = "Player Two Won!"
+            winner = PLAYER2_WIN
         else:
-            winner = "Draw Match!!"
-        print(f'''\n\nGame over!\n{winner}
-The Score is: Player 1 ({self.score_p1}): Player 2 ({self.score_p2})''')
+            winner = DRAW_MATCH
+        print(CYAN + '\n\nGame over!\n' + winner + GREEN +
+        '\nThe Score is: ' + MAGENTA + f'Player 1 ({self.score_p1})'
+        + WHITE + ' : ' + YELLOW + f'Player 2 ({self.score_p2})')
 
 
 if __name__ == '__main__':
     game_type = ""
     player_type = ""
-    print('''Here are the rules of the game: scissor cuts paper,paper covers
-rock, and rock crushes scissors. Play either "rock", "paper", or "scissors".
-The game cosists of 5 rounds!\n''')
+    print('Here are the rules of the game: scissor cuts paper,paper covers '+
+    'rock, and rock crushes scissors. Play either "rock", "paper", or ' +
+    '"scissors".\n The game cosists of 5 rounds!\n')
     while not (game_type == "1" or game_type == "2" or
                game_type == "3" or game_type == "4"):
         game_type = input('''Choose what type of game you would like to play:\n
