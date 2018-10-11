@@ -109,7 +109,7 @@ class Game:
         self.p1.learn(move1, move2)
         self.p2.learn(move2, move1)
         print(GREEN + "Score: " + MAGENTA + f"Player 1 ({self.score_p1}) : "
-        + YELLOW + f"Player 2 ({self.score_p2})")
+              + YELLOW + f"Player 2 ({self.score_p2})")
 
     def play_game(self):
         print("Game start!")
@@ -123,16 +123,16 @@ class Game:
         else:
             winner = DRAW_MATCH
         print(CYAN + '\n\nGame over!\n' + winner + GREEN +
-        '\nThe Score is: ' + MAGENTA + f'Player 1 ({self.score_p1})'
-        + WHITE + ' : ' + YELLOW + f'Player 2 ({self.score_p2})')
+              '\nThe Score is: ' + MAGENTA + f'Player 1 ({self.score_p1})'
+              + WHITE + ' : ' + YELLOW + f'Player 2 ({self.score_p2})')
 
 
 if __name__ == '__main__':
     game_type = ""
     player_type = ""
-    print('Here are the rules of the game: scissor cuts paper,paper covers '+
-    'rock, and rock crushes scissors. Play either "rock", "paper", or ' +
-    '"scissors".\n The game cosists of 5 rounds!\n')
+    print('Here are the rules of the game: scissor cuts paper,paper covers ' +
+          'rock, and rock crushes scissors. Play either "rock", "paper", or ' +
+          '"scissors".\n The game cosists of 5 rounds!\n')
     while not (game_type == "1" or game_type == "2" or
                game_type == "3" or game_type == "4"):
         game_type = input('''Choose what type of game you would like to play:\n
